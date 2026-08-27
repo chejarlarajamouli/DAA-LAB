@@ -1,0 +1,120 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMSJkkpxA+V/Ng+AOGOpRi0",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chejarlarajamouli/DAA-LAB/blob/main/practical%202\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import time\n",
+        "\n",
+        "# Linear Search Function\n",
+        "def linear_search(arr, key):\n",
+        "    for i in range(len(arr)):\n",
+        "        if arr[i] == key:\n",
+        "            return i\n",
+        "    return -1\n",
+        "\n",
+        "\n",
+        "# Binary Search Function\n",
+        "def binary_search(arr, key):\n",
+        "    low = 0\n",
+        "    high = len(arr) - 1\n",
+        "\n",
+        "    while low <= high:\n",
+        "        mid = low + (high - low) // 2\n",
+        "\n",
+        "        if arr[mid] == key:\n",
+        "            return mid\n",
+        "        elif arr[mid] < key:\n",
+        "            low = mid + 1\n",
+        "        else:\n",
+        "            high = mid - 1\n",
+        "\n",
+        "    return -1\n",
+        "\n",
+        "\n",
+        "# Main Program\n",
+        "n = 100000\n",
+        "arr = list(range(1, n + 1))  # Creating a sorted array\n",
+        "\n",
+        "key = int(input(\"Enter element to search: \"))\n",
+        "\n",
+        "# Linear Search Timing\n",
+        "start = time.perf_counter()\n",
+        "index = linear_search(arr, key)\n",
+        "stop = time.perf_counter()\n",
+        "\n",
+        "print(\"\\nLinear Search\")\n",
+        "if index != -1:\n",
+        "    print(\"Element found at index\", index)\n",
+        "else:\n",
+        "    print(\"Element not found\")\n",
+        "\n",
+        "print(\"Time Taken:\", (stop - start) * 1_000_000, \"microseconds\")\n",
+        "\n",
+        "# Binary Search Timing\n",
+        "start = time.perf_counter()\n",
+        "index = binary_search(arr, key)\n",
+        "stop = time.perf_counter()\n",
+        "\n",
+        "print(\"\\nBinary Search\")\n",
+        "if index != -1:\n",
+        "    print(\"Element found at index\", index)\n",
+        "else:\n",
+        "    print(\"Element not found\")\n",
+        "\n",
+        "print(\"Time Taken:\", (stop - start) * 1_000_000, \"microseconds\")\n",
+        ""
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4Ot0rC7WG_FR",
+        "outputId": "f8056498-8415-462c-f502-478927931d0c"
+      },
+      "execution_count": 2,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter element to search: 10\n",
+            "\n",
+            "Linear Search\n",
+            "Element found at index 9\n",
+            "Time Taken: 155.03300005548226 microseconds\n",
+            "\n",
+            "Binary Search\n",
+            "Element found at index 9\n",
+            "Time Taken: 153.30700000504294 microseconds\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
