@@ -1,0 +1,199 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/chejarlarajamouli/DAA-LAB/blob/main/Linear_search_and_Binary_Search_.ipynb%202\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# Linear search and Binary Search"
+      ],
+      "metadata": {
+        "id": "G0b0UO3gIlTe"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EG1kHeBZIQdy",
+        "outputId": "057b226f-12ba-4bca-f059-24a84d2b8af2"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter the number of elements: 3\n",
+            "Enter 3 sorted elements separated by spaces:\n",
+            "12 33 11 \n",
+            "Enter the element to search: 5\n",
+            "\n",
+            "Element 5 not found\n",
+            "\n",
+            "Execution Time: 0.000187 seconds\n",
+            "\n",
+            "Time Complexity:\n",
+            "Best Case    : O(1)\n",
+            "Average Case : O(n)\n",
+            "Worst Case   : O(n)\n",
+            "Space Complexity: O(1)\n",
+            "Enter the number of elements for binary search: 4\n",
+            "Enter 4 sorted elements separated by spaces for binary search:\n",
+            "11 33 44 55 \n",
+            "Enter the element to search for binary search: 44\n",
+            "\n",
+            "Element 44 found at index 2\n",
+            "\n",
+            "Execution Time: 0.000329 seconds\n",
+            "\n",
+            "Time Complexity:\n",
+            "Best Case    : O(1)\n",
+            "Average Case : O(log n)\n",
+            "Worst Case   : O(log n)\n",
+            "Space Complexity: O(1)\n"
+          ]
+        }
+      ],
+      "source": [
+        "import time\n",
+        "\n",
+        "# Input from the user\n",
+        "n = int(input(\"Enter the number of elements: \"))\n",
+        "\n",
+        "# Modified input for array elements to handle space-separated input\n",
+        "print(f\"Enter {n} sorted elements separated by spaces:\")\n",
+        "arr_input_str = input()\n",
+        "arr = [int(x) for x in arr_input_str.split()]\n",
+        "\n",
+        "# Element to search\n",
+        "key = int(input(\"Enter the element to search: \"))\n",
+        "\n",
+        "# Start timer\n",
+        "start_time = time.time()\n",
+        "\n",
+        "# Linear Search\n",
+        "position = -1\n",
+        "for i in range(n):\n",
+        "    if arr[i] == key:\n",
+        "        position = i\n",
+        "        break\n",
+        "\n",
+        "# Stop timer\n",
+        "end_time = time.time()\n",
+        "\n",
+        "# Calculate execution time\n",
+        "execution_time = end_time - start_time\n",
+        "\n",
+        "# Display result\n",
+        "if position != -1:\n",
+        "    print(f\"\\nElement {key} found at index {position}\")\n",
+        "else:\n",
+        "    print(f\"\\nElement {key} not found\")\n",
+        "\n",
+        "# Display execution time\n",
+        "print(f\"\\nExecution Time: {execution_time:.6f} seconds\")\n",
+        "\n",
+        "# Display time complexity\n",
+        "print(\"\\nTime Complexity:\")\n",
+        "print(\"Best Case    : O(1)\")\n",
+        "print(\"Average Case : O(n)\")\n",
+        "print(\"Worst Case   : O(n)\")\n",
+        "print(\"Space Complexity: O(1)\")\n",
+        "\n",
+        "\n",
+        "###binary search\n",
+        "\n",
+        "\n",
+        "import time\n",
+        "\n",
+        "# Input from the user (This part is repeated for demonstration,\n",
+        "# but ideally, input should be taken once for both algorithms if comparing)\n",
+        "n = int(input(\"Enter the number of elements for binary search: \"))\n",
+        "\n",
+        "# Modified input for array elements to handle space-separated input\n",
+        "print(f\"Enter {n} sorted elements separated by spaces for binary search:\")\n",
+        "arr_input_str_binary = input()\n",
+        "arr_binary = [int(x) for x in arr_input_str_binary.split()]\n",
+        "\n",
+        "# Element to search\n",
+        "key_binary = int(input(\"Enter the element to search for binary search: \"))\n",
+        "\n",
+        "# Start timer\n",
+        "start_time = time.time()\n",
+        "\n",
+        "# Binary Search\n",
+        "low = 0\n",
+        "high = n - 1\n",
+        "position = -1\n",
+        "\n",
+        "while low <= high:\n",
+        "    mid = (low + high) // 2\n",
+        "\n",
+        "    if arr_binary[mid] == key_binary:\n",
+        "        position = mid\n",
+        "        break\n",
+        "    elif arr_binary[mid] < key_binary:\n",
+        "        low = mid + 1\n",
+        "    else:\n",
+        "        high = mid - 1\n",
+        "\n",
+        "# Stop timer\n",
+        "end_time = time.time()\n",
+        "\n",
+        "# Calculate execution time\n",
+        "execution_time = end_time - start_time\n",
+        "\n",
+        "# Display result\n",
+        "if position != -1:\n",
+        "    print(f\"\\nElement {key_binary} found at index {position}\")\n",
+        "else:\n",
+        "    print(f\"\\nElement {key_binary} not found\")\n",
+        "\n",
+        "# Display execution time\n",
+        "print(f\"\\nExecution Time: {execution_time:.6f} seconds\")\n",
+        "\n",
+        "# Display time complexity\n",
+        "print(\"\\nTime Complexity:\")\n",
+        "print(\"Best Case    : O(1)\")\n",
+        "print(\"Average Case : O(log n)\")\n",
+        "print(\"Worst Case   : O(log n)\")\n",
+        "print(\"Space Complexity: O(1)\")\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "gsZ6z1TwJKy3"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
